@@ -3,7 +3,7 @@
 # tested with elbe-v0.5.5-13-gad384e9
 
 # baseimage is ubuntu precise (LTS)
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 
 # Maintainer
 MAINTAINER Silvio F. <silvio@port1024.net>
@@ -28,7 +28,7 @@ RUN apt-get install -y git build-essential openssh-server vim supervisor \
 		       dnsmasq dnsutils sudo \
 		       aptitude tig mercurial-git \
 		       gcc-multilib g++-multilib libc6-dev dpkg locales \
-		       libdbus-glib-1-dev
+		       libdbus-glib-1-dev rsync git-lfs socat
 
 # clean up
 RUN apt-get clean
