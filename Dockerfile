@@ -30,6 +30,10 @@ RUN apt-get install -y git build-essential openssh-server vim supervisor \
 		       gcc-multilib g++-multilib libc6-dev dpkg locales \
 		       libdbus-glib-1-dev rsync git-lfs socat
 
+# Set up locales
+RUN apt-get -y install locales apt-utils sudo && dpkg-reconfigure locales && locale-gen en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+ENV LANG en_US.utf8
+
 # clean up
 RUN apt-get clean
 
