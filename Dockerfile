@@ -66,7 +66,7 @@ RUN apt-get install -y \
 	libusb-1.0-0-dev \
 	locales \
 	lzop \
-	mercurial-git \
+	mercurial \
 	mtools \
 	openssh-server \
 	parted \
@@ -76,7 +76,6 @@ RUN apt-get install -y \
 	python-dev \
 	python2.7 \
 	python3-dev \
-	python-git \
 	rsync \
 	socat \
 	sudo \
