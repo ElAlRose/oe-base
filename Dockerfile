@@ -86,6 +86,7 @@ RUN apt-get install -y \
 	vim \
 	wget \
 	xterm \
+	iputils-ping \
 && rm -rf /var/lib/apt/lists/*
 
 # Set up locales
