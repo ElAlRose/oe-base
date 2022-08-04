@@ -53,9 +53,12 @@ RUN apt-get install -y \
 	gettext \
 	git \
 	git-lfs \
+	iputils-ping \
+	kmod \
 	kmod \
 	libc6-dev \
 	libdbus-glib-1-dev \
+	liblz4-dev\
 	libncurses5 \
 	libncurses5-dev \
 	libsdl1.2-dev \
@@ -66,6 +69,7 @@ RUN apt-get install -y \
 	libusb-1.0-0-dev \
 	locales \
 	lzop \
+	lz4 \
 	mercurial \
 	mtools \
 	openssh-server \
@@ -86,7 +90,7 @@ RUN apt-get install -y \
 	vim \
 	wget \
 	xterm \
-	iputils-ping \
+	zstd \
 && rm -rf /var/lib/apt/lists/*
 
 # Set up locales
