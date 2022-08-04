@@ -3,10 +3,10 @@
 # tested with elbe-v0.5.5-13-gad384e9
 
 # baseimage is ubuntu precise (LTS)
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 # Maintainer
-MAINTAINER Silvio F. <silvio@port1024.net>
+MAINTAINER Elmar Albert <ealbert@data-modul.com>
 
 # set debian/ubuntu config environment to noninteractive
 ENV DEBIAN_FRONTEND noninteractive
@@ -21,14 +21,77 @@ RUN ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 RUN apt-get update -y && apt-get upgrade -y
 
 # development base installation
-RUN apt-get install -y git build-essential openssh-server vim supervisor \
-		       gawk wget diffstat unzip texinfo chrpath libsdl1.2-dev \
-		       xterm python2.7 cpio flex bison gettext dialog autoconf \
-		       libxml-parser-perl lzop bc file python-git \
-		       dnsmasq dnsutils sudo \
-		       aptitude tig mercurial-git \
-		       gcc-multilib g++-multilib libc6-dev dpkg locales \
-		       libdbus-glib-1-dev rsync git-lfs socat
+RUN apt-get install -y \
+	apt-utils \
+	aptitude \
+	autoconf \
+	automake \
+	bc \
+	binfmt-support \
+	bison \
+	build-essential \
+	ca-certificates \
+	ccache \
+	cmake \
+	cpio \
+	chrpath \
+	curl \
+	dialog \
+	diffstat \
+	dnsmasq \
+	dnsutils \
+	dosfstools \
+	dpkg-dev \
+	dpkg \
+	fakeroot \
+	file \
+	flex \
+	gawk \
+	gcc-multilib \
+	g++-multilib \
+	gdisk \
+	gettext \
+	git \
+	git-lfs \
+	iputils-ping \
+	kmod \
+	kmod \
+	libc6-dev \
+	libdbus-glib-1-dev \
+	liblz4-dev\
+	libncurses5 \
+	libncurses5-dev \
+	libsdl1.2-dev \
+	libssl-dev \
+	libxml-parser-perl \
+	libusb-1.0 \
+	libusb-1.0-0 \
+	libusb-1.0-0-dev \
+	locales \
+	lzop \
+	lz4 \
+	mercurial \
+	mtools \
+	openssh-server \
+	parted \
+	pkg-config \
+	pv \
+	python \
+	python-dev \
+	python2.7 \
+	python3-dev \
+	rsync \
+	socat \
+	sudo \
+	supervisor \
+	texinfo \
+	tig \
+	unzip \
+	vim \
+	wget \
+	xterm \
+	zstd \
+&& rm -rf /var/lib/apt/lists/*
 
 # Set up locales
 RUN apt-get -y install locales apt-utils sudo && dpkg-reconfigure locales && locale-gen en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
@@ -66,8 +129,8 @@ RUN cd /oe-home ; \
 ADD adds/sbc-notify.sh /usr/local/bin/sbc-notify.sh
 RUN chmod a+x /usr/local/bin/sbc-notify.sh
 
-# correction for filesystems
-RUN ln -sf /bin/bash /bin/sh
+# Replace dash with bash
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # repo tool
 ADD http://commondatastorage.googleapis.com/git-repo-downloads/repo /usr/local/bin/repo
