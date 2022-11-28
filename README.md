@@ -66,7 +66,7 @@ or by ID:
                 }
             }
 
-## connect to container via ssh, e.g.:
+## Connect to container via ssh, e.g.:
 
     ssh -XA oe@172.17.0.2
     X11 forwarding request failed on channel 0
@@ -82,7 +82,7 @@ or by ID:
     To restore this content, you can run the 'unminimize' command.
     Last login: Mon Oct 17 11:59:38 2022 from 172.17.0.1
 
-If password is requrested, see next chapter.
+If password is requested, see next chapter.
 
 ## passwords
 
