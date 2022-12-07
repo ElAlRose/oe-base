@@ -20,19 +20,19 @@ the container at image start time, see below.
     $ clone this repository
     $ cd oe-base
     $ docker build --no-cache  -t oe-dmo .
-    $
+
     
 ## Show images, e.g.:
 
     $ docker images
     REPOSITORY                TAG       IMAGE ID       CREATED         SIZE
     oe-dmo-focal              latest    252e18ce2f05   3 months ago    1.18GB
-    $
+
 
 
 ## Start an image and map host-directories into the container, e.g.:
 
-    docker run -d -t -v /development:/development -v /build-yocto:/build-yocto oe-dmo-focal:latest
+    $ docker run -d -t -v /development:/development -v /build-yocto:/build-yocto oe-dmo-focal:latest
 This starts the container and maps the folders /development and /build-yocto of the host system to /development and /build-yocto inside the container, so that these can be accessed from inside the container as well as on the host system.
 
 ## Show running containers, e.g.:
@@ -40,19 +40,17 @@ This starts the container and maps the folders /development and /build-yocto of 
     $ docker ps -a
     CONTAINER ID   IMAGE                  COMMAND                  CREATED         STATUS                     PORTS     NAMES
     512109d2bddd   oe-dmo-focal:latest    "/usr/sbin/sshd -D"      3 months ago    Exited (0) 5 weeks ago               relaxed_black
-    $
 
 ## Start a container, e.g. by name:
 
     $ docker start relaxed_black 
     relaxed_black
-    $
     
 or by ID:
 
     $ docker start 512109d2bddd 
     512109d2bddd
-    $
+
     
 ## Find the IP-address to connect to via ssh, e.g.:
 
@@ -75,7 +73,6 @@ or by ID:
                     "DriverOpts": null
                 }
             }
-    $
 
 ## Connect to container via ssh, e.g.:
 
@@ -92,7 +89,7 @@ or by ID:
 
     To restore this content, you can run the 'unminimize' command.
     Last login: Mon Oct 17 11:59:38 2022 from 172.17.0.1
-    $
+
 
 If password is requested, see next chapter.
 
@@ -100,6 +97,8 @@ If password is requested, see next chapter.
 
     root: foo
     oe:   foo
+
+
 
 __Now the build can be started as usual.__
 
