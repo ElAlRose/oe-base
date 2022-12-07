@@ -5,22 +5,29 @@
 embedded devices
 
 This is a Dockerfile to generate an oe development environment for systems
-other than ubuntu based. You can run bitbake etc. within this image.
-But for developing you should use your native system.
+other than ubuntu based. \
+You can run bitbake etc. within this image.\
+For developing you should use your native system, only building shall be done
+inside the container, i. e. source files and build results shall be located on
+local shares __outside__ the container.\
+Therefore local folders will be mapped into
+the container at image start time, see below.
 
 [oem]: http://www.openembedded.org "OE Homepage"
 
-## How to build:
+## How to build the docker image:
 
-    clone repository
-    cd oe-base
-    docker build --no-cache  -t oe-dmo .
+    $ clone this repository
+    $ cd oe-base
+    $ docker build --no-cache  -t oe-dmo .
+    $
     
 ## Show images, e.g.:
 
-    docker images
+    $ docker images
     REPOSITORY                TAG       IMAGE ID       CREATED         SIZE
     oe-dmo-focal              latest    252e18ce2f05   3 months ago    1.18GB
+    $
 
 
 ## Start an image and map host-directories into the container, e.g.:
@@ -30,23 +37,26 @@ This starts the container and maps the folders /development and /build-yocto of 
 
 ## Show running containers, e.g.:
 
-    docker ps -a
+    $ docker ps -a
     CONTAINER ID   IMAGE                  COMMAND                  CREATED         STATUS                     PORTS     NAMES
     512109d2bddd   oe-dmo-focal:latest    "/usr/sbin/sshd -D"      3 months ago    Exited (0) 5 weeks ago               relaxed_black
+    $
 
 ## Start a container, e.g. by name:
 
-    docker start relaxed_black 
+    $ docker start relaxed_black 
     relaxed_black
+    $
     
 or by ID:
 
-    docker start 512109d2bddd 
+    $ docker start 512109d2bddd 
     512109d2bddd
+    $
     
 ## Find the IP-address to connect to via ssh, e.g.:
 
-    docker inspect relaxed_black
+    $ docker inspect relaxed_black
     ...
                 "Networks": {
                 "bridge": {
@@ -65,10 +75,11 @@ or by ID:
                     "DriverOpts": null
                 }
             }
+    $
 
 ## Connect to container via ssh, e.g.:
 
-    ssh -XA oe@172.17.0.2
+    $ ssh -XA oe@172.17.0.2
     X11 forwarding request failed on channel 0
     Welcome to Ubuntu 20.04.4 LTS (GNU/Linux 5.15.0-53-generic x86_64)
 
@@ -81,11 +92,14 @@ or by ID:
 
     To restore this content, you can run the 'unminimize' command.
     Last login: Mon Oct 17 11:59:38 2022 from 172.17.0.1
+    $
 
 If password is requested, see next chapter.
 
-## passwords
+## passwords:
 
     root: foo
     oe:   foo
+
+__Now the build can be started as usual.__
 
